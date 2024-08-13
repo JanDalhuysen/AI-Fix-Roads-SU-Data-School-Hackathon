@@ -185,11 +185,11 @@ os.system('python part2.py ' + sys.argv[1] + ' ' + str(conversion) + ' > part2.t
 
 os.system('python part3.py > ' + sys.argv[1][:-4] + '.txt')
 
-red = bags[:,:,0]*mask
-green = bags[:,:,1]*mask
-blue = bags[:,:,2]*mask
-bags_masked = np.dstack((red,green,blue))
+# red = bags[:,:,0]*mask
+# green = bags[:,:,1]*mask
+# blue = bags[:,:,2]*mask
+# bags_masked = np.dstack((red,green,blue))
 
-imshow(bags_masked)
+# imshow(bags_masked)
 
-plt.show()
+# plt.show()
