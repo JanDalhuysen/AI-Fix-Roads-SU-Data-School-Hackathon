@@ -24,10 +24,6 @@ mask = upper_mask*lower_mask*saturation_mask
 # Find red pixel coordinates (y, x)
 red_y, red_x = np.where(mask == True)
 
-# Print all red pixel coordinates
-# for y, x in zip(red_y, red_x):
-    # print(f"Red Pixel Coordinate: (y: {y}, x: {x})")
-
 # Count the number of red pixels in each y row
 row_counts = {}
 for y in red_y:
@@ -88,14 +84,6 @@ for row in top_rows:
 print("most popular rows")
 print(most_popular_row)
 
-
-
-
-
-
-
-
-
 most_popular_column = []
 
 # Find the top 30 columns with the most red pixels
@@ -121,10 +109,6 @@ for column in top_columns:
 
     group3 = group3[3:]
     group3 = group3[:-3]
-
-# group1_avg = sum(group1) / len(group1)
-# group2_avg = sum(group2) / len(group2)
-# group3_avg = sum(group3) / len(group3)
 
 print("most popular columns")
 print(most_popular_column)
@@ -190,22 +174,6 @@ print(f"The distance between the two points is {distance} pixels.")
 # Calculate the conversion factor
 conversion = 1000 / distance
 
-
-
-
-
-
-
-# Print the three groups
-# print("Group 1:", group1)
-# print("Group 2:", group2)
-# print("Group 3:", group3)
-
-# Print the three groups
-# print("Group 1:", group1_avg)
-# print("Group 2:", group2_avg)
-# print("Group 3:", group3_avg)
-
 # Convert to 1 meter
 # group 3 - group 1 = 1 meter
 # meter = group3_avg - group1_avg
@@ -216,7 +184,6 @@ conversion = 1000 / distance
 # os.system('python part2.py ' + sys.argv[1] + ' ' + str(conversion) + ' > part2.txt')
 
 # os.system('python part3.py > ' + sys.argv[1][:-4] + '.txt')
-
 
 red = bags[:,:,0]*mask
 green = bags[:,:,1]*mask
