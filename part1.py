@@ -181,9 +181,9 @@ conversion = 1000 / distance
 # conversion factor
 # conversion = 1000 / meter
 
-# os.system('python part2.py ' + sys.argv[1] + ' ' + str(conversion) + ' > part2.txt')
+os.system('python part2.py ' + sys.argv[1] + ' ' + str(conversion) + ' > part2.txt')
 
-# os.system('python part3.py > ' + sys.argv[1][:-4] + '.txt')
+os.system('python part3.py > ' + sys.argv[1][:-4] + '.txt')
 
 red = bags[:,:,0]*mask
 green = bags[:,:,1]*mask
