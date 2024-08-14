@@ -57,7 +57,7 @@ for y in red_y:
 
 most_popular_row = []
 
-# Find the top 30 rows with the most red pixels
+# Find the top 50 rows with the most red pixels
 top_rows = sorted(row_counts, key=row_counts.get, reverse=True)[:50]
 for row in top_rows:
     most_popular_row.append(row)
@@ -66,27 +66,12 @@ for row in top_rows:
     # Sort the most_popular_row array
     most_popular_row.sort()
 
-    # Split the sorted array into three groups
-    group_size = len(most_popular_row) // 3
-    group1 = most_popular_row[:group_size]
-    group2 = most_popular_row[group_size:2*group_size]
-    group3 = most_popular_row[2*group_size:]
-    
-    group1 = group1[3:]
-    group1 = group1[:-3]
-
-    group2 = group2[3:]
-    group2 = group2[:-3]
-
-    group3 = group3[3:]
-    group3 = group3[:-3]
-
 print("most popular rows")
 print(most_popular_row)
 
 most_popular_column = []
 
-# Find the top 30 columns with the most red pixels
+# Find the top 50 columns with the most red pixels
 top_columns = sorted(column_counts, key=column_counts.get, reverse=True)[:50]
 for column in top_columns:
     most_popular_column.append(column)
@@ -94,21 +79,6 @@ for column in top_columns:
 
     # Sort the most_popular_column array
     most_popular_column.sort()
-
-    # Split the sorted array into three groups
-    group_size = len(most_popular_column) // 3
-    group1 = most_popular_column[:group_size]
-    group2 = most_popular_column[group_size:2*group_size]
-    group3 = most_popular_column[2*group_size:]
-    
-    group1 = group1[3:]
-    group1 = group1[:-3]
-
-    group2 = group2[3:]
-    group2 = group2[:-3]
-
-    group3 = group3[3:]
-    group3 = group3[:-3]
 
 print("most popular columns")
 print(most_popular_column)
@@ -170,9 +140,10 @@ distance = np.sqrt((point_two_y - point_one_y)**2 + (point_two_x - point_one_x)*
 
 # Print the distance between the two points
 print(f"The distance between the two points is {distance} pixels.")
+print(sys.argv[1])
 
 # Calculate the conversion factor
-conversion = 1000 / distance
+conversion = 500 / distance
 
 # Convert to 1 meter
 # group 3 - group 1 = 1 meter

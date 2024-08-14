@@ -9,4 +9,6 @@ with open(file_path, 'r') as file:
             result.append(line.strip())
 
 # total area = width * height
-print(result[0][12:])
+# print(result[0][12:])
+meters_squared = float(result[0][12:])/1000000
+print(meters_squared)

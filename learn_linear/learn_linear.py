@@ -26,7 +26,7 @@ y = data['output']
 model = LinearRegression()
 model.fit(X, y)
 
-predictions = model.predict([ [660000] ])
+predictions = model.predict([ [1.05] ])
 print(predictions)
 
 code = open("learn_linear_to_c_1.h", mode="w+")
