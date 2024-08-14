@@ -143,7 +143,7 @@ print(f"The distance between the two points is {distance} pixels.")
 print(sys.argv[1])
 
 # Calculate the conversion factor
-conversion = 500 / distance
+conversion = 750 / distance
 
 # Convert to 1 meter
 # group 3 - group 1 = 1 meter
