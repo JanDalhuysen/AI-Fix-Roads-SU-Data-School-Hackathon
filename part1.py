@@ -86,6 +86,9 @@ print(most_popular_column)
 # Find the pixel with the most red pixels around it in a radius of the standard deviation
 # Calculate the standard deviation of the red pixel values
 red_std = np.std(bags[:,:,0])
+# red_std = 20
+print("standard deviation")
+print(red_std)
 
 # Initialize variables to store the maximum count and corresponding pixel coordinates
 max_count = 0
@@ -135,6 +138,35 @@ print(f"The second pixel with the most red pixels around it, more than 100 pixel
 point_two_x = second_max_pixel[1]
 point_two_y = second_max_pixel[0]
 
+# Find the pixel with the most red around it more than 100 pixels away from point_one and point_two
+third_max_count = 0
+third_max_pixel = None
+
+# Iterate over each red pixel
+for y, x in zip(red_y, red_x):
+    # Calculate the distance between the current pixel and point_one
+    distance_one = np.sqrt((y - point_one_y)**2 + (x - point_one_x)**2)
+    
+    # Calculate the distance between the current pixel and point_two
+    distance_two = np.sqrt((y - point_two_y)**2 + (x - point_two_x)**2)
+    
+    # Check if the distance is greater than 100 pixels
+    if distance_one > 100 and distance_two > 100:
+        # Calculate the number of red pixels within the standard deviation radius
+        count = np.sum(np.sqrt((red_y - y)**2 + (red_x - x)**2) <= red_std)
+        
+        # Update the third maximum count and corresponding pixel coordinates if necessary
+        if count > third_max_count:
+            third_max_count = count
+            third_max_pixel = (y, x)
+
+# Print the third pixel with the most red pixels around it
+print(f"The third pixel with the most red pixels around it, more than 100 pixels away from point_one and point_two, is at (y: {third_max_pixel[0]}, x: {third_max_pixel[1]}) with {third_max_count} red pixels.")
+
+point_three_x = third_max_pixel[1]
+point_three_y = third_max_pixel[0]
+
+
 # Calculate the distance between the two points
 distance = np.sqrt((point_two_y - point_one_y)**2 + (point_two_x - point_one_x)**2)
 
@@ -152,9 +184,9 @@ conversion = 750 / distance
 # conversion factor
 # conversion = 1000 / meter
 
-os.system('python part2.py ' + sys.argv[1] + ' ' + str(conversion) + ' > part2.txt')
+# os.system('python part2.py ' + sys.argv[1] + ' ' + str(conversion) + ' > part2.txt')
 
-os.system('python part3.py > ' + sys.argv[1][:-4] + '.txt')
+# os.system('python part3.py > ' + sys.argv[1][:-4] + '.txt')
 
 # red = bags[:,:,0]*mask
 # green = bags[:,:,1]*mask
@@ -163,4 +195,35 @@ os.system('python part3.py > ' + sys.argv[1][:-4] + '.txt')
 
 # imshow(bags_masked)
 
+
+final_x = []
+final_y = []
+
+# plt.show()
+for x,y in zip(red_x, red_y):
+    print(str(x) + " " + str(y))
+
+for x,y in zip(red_x, red_y):
+    count = 0
+    for a,b in zip(red_x, red_y):
+        if(x == a and y == b):
+            continue
+
+        dist = np.sqrt((x-a)**2 + (y-b)**2)
+
+        if(dist < 5):
+    
+    if(min_dist < 5):
+        final_x.append(x)
+        final_y.append(y)
+
+
+
+
+
+
+# zip(red_y, red_x)
+# Plot the red pixels on the image
+# plt.scatter(red_x, red_y, color='red', s=1)
+# plt.imshow(bags)
 # plt.show()
