@@ -196,6 +196,8 @@ conversion = 750 / distance
 # imshow(bags_masked)
 
 
+
+#haal random uit
 final_x = []
 final_y = []
 
@@ -211,9 +213,10 @@ for x,y in zip(red_x, red_y):
 
         dist = np.sqrt((x-a)**2 + (y-b)**2)
 
-        if(dist < 5):
+        if(dist < 5):   #sus
+            count+=1
     
-    if(min_dist < 5):
+    if(count>15):  #sus
         final_x.append(x)
         final_y.append(y)
 
@@ -222,8 +225,99 @@ for x,y in zip(red_x, red_y):
 
 
 
+
+
+
+
+
+
+#DSU
+n = len(final_x)
+
+e = [-1 for i in range(n)]
+
+def find(v):
+    if(e[v]<0):
+        return v
+    else:
+        e[v]=find(e[v])
+        return e[v]
+    
+def join(a,b):
+    a=find(a)
+    b=find(b)
+
+    if(a==b):
+        return 0
+
+    if(e[a]>e[b]):
+        temp=a
+        a=b
+        b=temp
+    
+    e[a]+=e[b]
+    e[b]=a
+    return 1
+
+
+
+
+
+
+
+
+
+
+
+
+for i in range(n):
+    for j in range(n):
+        dist = (final_x[i]-final_x[j])**2+(final_y[i]-final_y[j])**2
+
+        if(dist<40):  #sus
+            join(i,j)
+        
+leaders = []
+
+for i in range(n):
+    if(e[i]<0):
+        leaders.append(i)
+
+groups_x = []
+groups_y = []
+groups = []
+
+for i in range(len(leaders)):
+    temp_x= []
+    temp_y = []
+    temp = []
+    for j in range(n):
+        if(find(j)==leaders[i]):
+            temp.append(j)
+            temp_x.append(final_x[j])
+            temp_y.append(final_y[j])
+    
+    groups.append(temp)
+    groups_x.append(temp_x)
+    groups_y.append(temp_y)
+
+for j in groups:
+    print(j)
+
+    print()
+    print()
+
+print(len(groups))
+
+
+#print points but in different colours based on in which group they are
+
+
+# plt.scatter(final_x[0], final_y[0], color='red', s=1)
+# plt.scatter(final_x[1], final_y[1], color='blue', s=1)
+# plt.scatter(final_x[2], final_y[2], color='green', s=1)
 # zip(red_y, red_x)
 # Plot the red pixels on the image
-# plt.scatter(red_x, red_y, color='red', s=1)
-# plt.imshow(bags)
-# plt.show()
+plt.scatter(red_x, red_y, color='red', s=1)
+plt.imshow(bags)
+plt.show()
