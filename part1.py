@@ -9,7 +9,7 @@ import os
 bags = imread(sys.argv[1])
 
 bags_hsv = rgb2hsv(bags)
-fig, ax = plt.subplots(1, 3, figsize=(12,4))
+fig, ax = plt.subplots(1, 1, figsize=(12,4))
 
 #refer to hue channel (in the colorbar)
 lower_mask = bags_hsv[:,:,0] > 0.0
@@ -421,12 +421,12 @@ print(f"The conversion factor is {conversion}.")
 # plt.scatter(final_x[2], final_y[2], color='green', s=1)
 # zip(red_y, red_x)
 # Plot the red pixels on the image
-# plt.scatter(red_x, red_y, color='red', s=1)
-# plt.imshow(bags)
-# plt.show()
+plt.scatter(red_x, red_y, color='red', s=1)
+plt.imshow(bags)
+plt.show()
 
 
-os.system('python part2.py ' + sys.argv[1] + ' ' + str(conversion) + ' > part2.txt')
+# os.system('python part2.py ' + sys.argv[1] + ' ' + str(conversion) + ' > part2.txt')
 
-os.system('python part3.py > ' + sys.argv[1][:-4] + '.txt')
+# os.system('python part3.py > ' + sys.argv[1][:-4] + '.txt')
 
