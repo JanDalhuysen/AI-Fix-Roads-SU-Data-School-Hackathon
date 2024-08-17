@@ -9,7 +9,7 @@ namespace Eloquent {
                     * Predict class for features vector
                     */
                     float predict(float *x) {
-                        return dot(x, 0.973947170753) + 0.6458714835934021;
+                        return dot(x, 1.510821354867) + 0.18457418751549903;
                     }
 
                 protected:

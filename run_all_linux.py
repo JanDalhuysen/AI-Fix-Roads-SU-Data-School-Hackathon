@@ -1,7 +1,7 @@
 import os
 import csv
 
-file_dir = "patch_perfect_data//train_images"
+file_dir = "patch_perfect_data/train_hugo1"
 file_list = os.listdir(file_dir)
 print(len(file_list))
 float_array = []
