@@ -62,41 +62,41 @@ def show_preds_image(image_path):
         # print(f"Height in millimeters: {conversion * (int(det[3]) - int(det[1]))}")
 
 
-        cv2.rectangle(
-            image,
-            (int(38.62),int(113.49)),
-            (int(388.13),int(348.27)),
-            color=(0, 0, 255),
-            thickness=2,
-            lineType=cv2.LINE_AA
-        )
-        
-        cv2.rectangle(
-            image,
-            (int(47.72),int(39.664)),
-            (int(396.57),int(144.62)),
-            color=(0, 0, 255),
-            thickness=2,
-            lineType=cv2.LINE_AA
-        )
-
         # cv2.rectangle(
         #     image,
-        #     (int(det[0]), int(det[1])),
-        #     (int(det[2]), int(det[3])),
+        #     (int(38.62),int(113.49)),
+        #     (int(388.13),int(348.27)),
         #     color=(0, 0, 255),
         #     thickness=2,
         #     lineType=cv2.LINE_AA
         # )
+        
+        # cv2.rectangle(
+        #     image,
+        #     (int(47.72),int(39.664)),
+        #     (int(396.57),int(144.62)),
+        #     color=(0, 0, 255),
+        #     thickness=2,
+        #     lineType=cv2.LINE_AA
+        # )
+
+        cv2.rectangle(
+            image,
+            (int(det[0]), int(det[1])),
+            (int(det[2]), int(det[3])),
+            color=(0, 0, 255),
+            thickness=2,
+            lineType=cv2.LINE_AA
+        )
     return cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-image_path = sys.argv[1]
-image_with_overlay = show_preds_image(image_path)
-cv2.imshow("Image with Overlay", image_with_overlay)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+# image_path = sys.argv[1]
+# image_with_overlay = show_preds_image(image_path)
+# cv2.imshow("Image with Overlay", image_with_overlay)
+# cv2.waitKey(0)
+# cv2.destroyAllWindows()
 
-# show_preds_image(sys.argv[1])
+show_preds_image(sys.argv[1])
 
 # To view the GUI interface, uncomment the following lines
 
