@@ -1,7 +1,11 @@
 import os
 import csv
 
-file_dir = "patch_perfect_data/train_hugo1"
+# file_dir = "patch_perfect_data/train_hugo1"
+file_dir = "tune400/train/images/"
+
+# file_dir = "tune400/valid/images/"
+
 file_list = os.listdir(file_dir)
 print(len(file_list))
 float_array = []
@@ -22,5 +26,6 @@ for file_name in file_list:
 print(len(file_name_array))
 # print(file_name_array)
 
-# for file_name in file_name_array:
-    # os.system("python part1.py " + file_dir + file_name)
+for file_name in file_name_array:
+    print(file_name)
+    os.system("python part1.py " + file_dir + file_name)

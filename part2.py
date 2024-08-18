@@ -6,7 +6,14 @@ from ultralytics import YOLO
 
 conversion = float(sys.argv[2])
 
-model = YOLO('best.pt')
+# model = YOLO('best.pt')
+
+# model = YOLO('last.pt')
+
+# model = YOLO('30best.pt')
+
+model = YOLO('400best400.pt')
+
 path  = [['image_0.jpg'], ['image_1.jpg']]
 video_path = [['video.mp4']]
 
