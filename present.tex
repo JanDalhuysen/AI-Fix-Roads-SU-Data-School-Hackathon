@@ -1,0 +1,98 @@
+\documentclass{beamer}
+\usetheme{Madrid}
+\usecolortheme{dolphin}
+
+\definecolor{mycolor1}{RGB}{20,30,48}
+\definecolor{mycolor2}{RGB}{36,59,85}
+
+\usepackage{tikz}
+\usebackgroundtemplate{
+\begin{tikzpicture}
+\shade [left color = white!80, right color = mycolor2!100]
+(0,0) rectangle (\paperwidth,\paperheight);
+\end{tikzpicture}}
+
+\title{AI Fix Roads SU Data School Hackathon}
+\author[Trivial Matters Inc.]{\textbf {Jan Dalhuysen \and Hugo Bruwer \and Nathan Sparg \and Dannike Zietsman \and Joseph Carmody}}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Introduction}
+Predict the amount of asphalt required to fill a pothole given just an image of that pothole?
+How might you commercialise this model? How can your model be used practically in industry?
+\end{frame}
+
+\begin{frame}
+\frametitle{Detecting Stick length}
+Disjoint-set data structure
+Invented 1964 by Bernard A. Galler and Michael J. Fischer
+In computer science, a disjoint-set data structure, also called a union-find data structure or merge-find set, is a data structure that stores a collection of disjoint (non-overlapping) sets. Equivalently, it stores a partition of a set into disjoint subsets. It provides operations for adding new sets, merging sets (replacing them by their union), and finding a representative member of a set. The last operation makes it possible to find out efficiently if any two elements are in the same or different sets. -Wikipedia
+For detecting the length of the stick in the image, the disjoint-set algorithm was used. The algorithm was implemented in Python using the \textbf{scikit-image} library, that modified the image to only display the red pixels in the image. The DSU then groups red pixels together, while discarding other clutter, like red pixels that don't form part of the red paint on the stick.
+\end{frame}
+
+\begin{frame}
+\frametitle{Detecting Stick length}
+\begin{center}
+\includegraphics[width=0.80\columnwidth]{pdf_image_1.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Detecting Stick length}
+\begin{center}
+\includegraphics[width=0.80\columnwidth]{pdf_image_2.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Detecting Pothole dimensions}
+The pothole yolov8 nano model by Hugging Face user sovitrath was initially used to detect the pothole in the image, however this model was not good enough to detect the dimensions of the pothole reliably.
+The next step was then to use the base YoloV8 model from the ultralytics library and then train it on the pothole images and labels provided.
+The training photos with their labels showing the bounding boxes of the potholes and the models improvement over time are clearly shown below.
+\end{frame}
+
+\begin{frame}
+\frametitle{Detecting Pothole dimensions}
+\begin{center}
+\includegraphics[width=0.80\columnwidth]{train_batch1.jpg}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Detecting Pothole dimensions}
+\begin{center}
+\includegraphics[width=0.80\columnwidth]{labels.jpg}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Detecting Pothole dimensions}
+\begin{center}
+\includegraphics[width=0.80\columnwidth]{results.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Predicting}
+To find the correlation between the area of the pothole and the number of bags of asphalt used that is needed to fill them the \textbf{scikit-learn LinearRegression} model was used. The model was trained on the data set that was provided and the plot below clearly shows the correlation between the two variables. As the area of the pothole increases so does the number of bags of asphalt needed to fill it. An example of the csv file used to train the model is also included below.
+\end{frame}
+
+\begin{frame}
+\frametitle{Detecting Pothole dimensions}
+\begin{center}
+\includegraphics[width=0.80\columnwidth]{learn_linear_code.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Detecting Pothole dimensions}
+\begin{center}
+\includegraphics[width=0.80\columnwidth]{sheets_plot.pdf}
+\end{center}
+\end{frame}
+
+\end{document}
